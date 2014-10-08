@@ -1,0 +1,32 @@
+machine:
+  pre:
+    - sudo apt-get -qq update
+    - sudo apt-get install -qy libicu-dev cmake
+
+  environment:
+    RAILS_ENV: test
+
+  ruby:
+    version: 2.1.2
+
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "vendor/bundle"
+
+checkout:
+  post:
+    - cp config/database.yml.ci config/database.yml
+    - cp config/gitlab.yml.ci config/gitlab.yml
+    - docker info
+
+database:
+  override:
+    - bundle exec rake gitlab:setup force=yes
+
+test:
+  override:
+    - bin/circleci:
+        parallel: true

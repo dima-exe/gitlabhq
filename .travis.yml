@@ -7,7 +7,7 @@ env:
   global:
     - RAILS_ENV=test
 
-parallel: 16
+parallel: 6
 
 before_install:
   - sudo apt-get update -qq

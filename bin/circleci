@@ -1,0 +1,6 @@
+#!/bin/bash
+
+env force=true bin/circle_parallel_rspec
+env force=true bin/circle_parallel_spinach
+if [ "x$CIRCLE_NODE_INDEX" = 'x0' ] ; then env force=true bundle exec rake jasmine:ci ; else true ; fi
+
