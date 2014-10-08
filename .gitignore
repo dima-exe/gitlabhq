@@ -4,6 +4,7 @@ db/*.sqlite3
 db/*.sqlite3-journal
 log/*.log*
 tmp/
+working/
 .sass-cache/
 coverage/*
 backups/*
